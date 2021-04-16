@@ -5,11 +5,11 @@ This is the tool write in VBA, support for regex.
 ## About
 
 This is the tool support for:
-- Search with regex in list of file or folder.
-- List up result to each cell.
-- Replace by using regex, and output replacement information data sheet.
-- Clean up output information.
-- Create an Excel function to direct apply regex in Excel cells
+- Search with regex in list of file or folder. [in-progress]
+- List up result to each cell.[in-progress]
+- Replace by using regex, and output replacement information data sheet. [in-progress]
+- Clean up output information. [in-progress]
+- Create an Excel function to direct apply regex in Excel cells [in-progress]
 
 Why you use this tool:
 - The UI of this tool is Excel. Easy to input
