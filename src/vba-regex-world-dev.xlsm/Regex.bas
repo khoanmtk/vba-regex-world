@@ -1,4 +1,9 @@
 Attribute VB_Name = "Regex"
-Public Sub test()
+Public Sub SearchRegex()
+
+End Sub
+
+
+Public Sub ReplaceRegex()
 
 End Sub
