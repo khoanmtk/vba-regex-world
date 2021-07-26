@@ -8,8 +8,9 @@ This is the tool support for:
 - Search with regex in list of file or folder. [in-progress]
 - List up result to each cell.[in-progress]
 - Replace by using regex, and output replacement information data sheet. [in-progress]
+- Create an Excel function to direct use regex in Excel cells
+- Filter text of files, by ignored or get by list of regex
 - Clean up output information. [in-progress]
-- Create an Excel function to direct apply regex in Excel cells [in-progress]
 
 Why you use this tool:
 - The UI of this tool is Excel. Easy to input

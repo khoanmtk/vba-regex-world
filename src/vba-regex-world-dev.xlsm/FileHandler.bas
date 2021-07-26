@@ -72,11 +72,11 @@ Public Function WriteTextFile(path As String, dataToWrite As String) As Integer
 End Function
 
 'Go through all subfolders
-Public Sub ReadThroughFolder(path As String)
+Public Sub ReadThroughFolder()
     Dim fso, oFolder, oSubfolder, oFile, queue As Collection
     Set fso = CreateObject("Scripting.FileSystemObject")
     Set queue = New Collection
-    queue.Add fso.GetFolder("your folder path variable") 'obviously replace
+    queue.Add fso.GetFolder(ThisWorkbook.path) 'obviously replace
     Do While queue.Count > 0
         Set oFolder = queue(1)
         queue.Remove 1 'dequeue

@@ -10,10 +10,7 @@ End Sub
 
 ' Show messagebox error
 Public Sub WriteErrorLog()
-    Dim path As String
-    path = Application.ActiveWorkbook.path
-
-    Call WriteTextFile(path, errorLog)
+    Call WriteTextFile(ThisWorkbook.path, errorLog)
 End Sub
 
 ' Show messagebox error
