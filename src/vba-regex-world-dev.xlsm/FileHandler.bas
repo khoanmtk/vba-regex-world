@@ -1,28 +1,12 @@
 Attribute VB_Name = "FileHandler"
 ' Check if folder exist
-' Return E_OK if exist
-' or E_NOT_OK if not exist
-Public Function IsFolderExist(path As String) As Integer
-    Dim folder As String
-    folder = Dir(path, vbDirectory)
-    If folder = "" Then
-        IsFolderExist = E_NOT_OK
-    Else
-        IsFolderExist = E_OK
-    End If
+Public Function IsFile(path As String)
+    IsFile = CreateObject("Scripting.FileSystemObject").FileExists(path)
 End Function
 
 ' Check if folder exist
-' Return E_OK if exist
-' or E_NOT_OK if not exist
-Public Function IsFileExist(path As String) As Integer
-    Dim fileExist As String
-    fileExist = Dir(path)
-    If fileExist = "" Then
-        IsFileExist = E_NOT_OK
-    Else
-        IsFileExist = E_OK
-    End If
+Public Function IsDir(path As String)
+    IsDir = CreateObject("Scripting.FileSystemObject").FolderExists(path)
 End Function
 
 ' Read text file by get line by line method
@@ -66,17 +50,19 @@ Public Function WriteTextFile(path As String, dataToWrite As String) As Integer
     Set fso = CreateObject("Scripting.FileSystemObject")
 
     Dim Fileout As Object
-    Set Fileout = fso.CreateTextFile("C:\your_path\vba.txt", True, True)
-    Fileout.Write "your string goes here"
+    Set Fileout = fso.CreateTextFile(path, True, True)
+    Fileout.Write dataToWrite
     Fileout.Close
 End Function
 
 'Go through all subfolders
-Public Sub ReadThroughFolder()
+Public Sub ReadThroughFolder(inputFolder As String, fileArray() As String)
     Dim fso, oFolder, oSubfolder, oFile, queue As Collection
+    Dim fileNum As Integer
+    fileNum = 0
     Set fso = CreateObject("Scripting.FileSystemObject")
     Set queue = New Collection
-    queue.Add fso.GetFolder(ThisWorkbook.path) 'obviously replace
+    queue.Add fso.GetFolder(inputFolder) 'obviously replace
     Do While queue.Count > 0
         Set oFolder = queue(1)
         queue.Remove 1 'dequeue
@@ -86,6 +72,21 @@ Public Sub ReadThroughFolder()
         Next oSubfolder
         For Each oFile In oFolder.Files
             '...insert any file processing code here...
+            ReDim Preserve fileArray(fileNum)
+            fileArray(fileNum) = oFile.path
+            fileNum = fileNum + 1
         Next oFile
     Loop
 End Sub
+
+
+'Get list of file
+Public Sub GetListOfFile(listOfFile As String, fileArray() As String)
+    If InStr(listOfFile, vbLf) Then
+        fileArray = Split(listOfFile, vbLf)
+    Else
+        ReDim fileArray(0)
+        fileArray(0) = listOfFile
+    End If
+End Sub
+
